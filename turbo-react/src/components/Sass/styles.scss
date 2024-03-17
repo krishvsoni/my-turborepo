@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+html,
+body {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.todo-categories--section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  > div {
+    box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: scale 0.5s ease-out;
+    margin-inline: auto;
+
+    &:hover {
+      scale: 1.05;
+    }
+
+    .todo--container > li {
+      box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.06);
+      transform-origin: top;
+      transition: transform 1s ease-in-out;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .todo-categories--section {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 700px;
+    margin-inline: auto;
+
+    > div {
+      width: 220px;
+    }
+  }
+
+  // html,
+  // body {
+  //   max-width: 700px;
+  //   overflow-x: hidden;
+  //   background-color: white;
+  //   margin-inline: auto;
+  // }
+}
+
+.inner-div {
+  transition: width 1s ease-in;
+}
+
+label {
+  > input {
+    appearance: none;
+    width: 18px;
+    height: 17px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    // box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('../../assets/checkmark.png');
+      background-size: contain;
+      background-repeat: none;
+      display: none;
+    }
+
+    &:checked {
+      animation: animatedClick 1s ease-out forwards;
+
+      ~ p {
+        text-decoration: line-through;
+        font-size: 14px;
+        line-height: 20px;
+        transition: 0.5s ease-out;
+      }
+
+      &::before {
+        display: block;
+      }
+    }
+  }
+}
+
+@keyframes animatedClick {
+  0% {
+    background: transparent;
+  }
+
+  50% {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  }
+
+  100% {
+    background: gray;
+  }
+}
+
+.todobtn:active,
+.addNewTask:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.translateMainDown {
+  transform: translate(60%, 80px);
+}
+
+.translateMainUP {
+  transform: translate(0%, 0px);
+}
+
+main {
+  transition: transform 1000ms ease-in-out;
+}
+
+.hideTodoPage {
+  transform: translate(50%, 100%);
+  transition: transform 1000ms ease-in-out;
+}
+
+.showTodoPage {
+  transform: translate(0%, 0%);
+}
+
+.profile--container ul li:hover {
+  background-color: #f3f3f3;
+  color: blue;
+  padding: 5px 8px;
+  border-radius: 5px;
+  transition: padding 0.5s ease;
+}
+
+input:focus-within,
+select:focus-within {
+  box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.2);
+}
