@@ -20,7 +20,7 @@ mongoose.connect(MONGODB_URL)
   });
 
 const app = express();
-const PORT = 8000;
+const PORT = 5000;
 
 app.get('/', async (req: Request, res: Response) => {
   try {
